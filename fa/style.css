@@ -1,0 +1,659 @@
+/* Basic Styles & Global Resets */
+:root {
+    --primary-color: #388E3C; /* A rich, natural green like a cypress tree */
+    --secondary-color: #66BB6A; /* Lighter green for accents */
+    --text-color: #333;
+    --light-text-color: #555; /* Slightly darker light text for better contrast */
+    --background-color: #fff;
+    --light-bg-color: #f5fcf5; /* Very light green tint for background */
+    --border-color: #e0e0e0;
+    --header-height: 80px; /* کاهش ارتفاع هدر برای مینیمال شدن */
+    --font-heading: 'Vazirmatn', sans-serif; /* Persian font for headings */
+    --font-body: 'Vazirmatn', sans-serif; /* Persian font for body */
+
+    /* New variables for play icon and modal close button */
+    --white-color: #ffffff;
+    --dark-green-transparent: rgba(58, 83, 64, 0.6);
+    --dark-green-transparent-hover: rgba(58, 83, 64, 0.8);
+    --modal-close-color: #333; /* Default for close button */
+    --modal-close-hover-color: var(--primary-color); /* Primary color on hover for close button */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    line-height: 1.7;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    text-align: right; /* Changed for RTL (Persian) */
+    direction: rtl; /* Added for RTL (Persian) */
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 25px;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: color 0.3s ease;
+}
+a:hover {
+    color: var(--secondary-color);
+}
+
+ul {
+    list-style: none;
+}
+
+.section-padding {
+    padding: 100px 0;
+}
+
+h1, h2, h3 {
+    font-family: var(--font-heading);
+    color: var(--text-color);
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+h2 {
+    font-size: 3em;
+    text-align: center;
+    margin-bottom: 60px;
+    position: relative;
+    letter-spacing: 1px;
+}
+
+h2::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 3px; /* Slightly thicker underline */
+    background-color: var(--primary-color);
+    margin: 15px auto 0;
+}
+
+p.section-description {
+    text-align: center;
+    font-size: 1.2em;
+    margin-bottom: 70px;
+    color: var(--light-text-color);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Header */
+.header {
+    background-color: var(--background-color);
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+    justify-content: center; /* هدر را در مرکز قرار می‌دهد */
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.08);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header .container {
+    display: flex;
+    justify-content: center; /* محتوای داخل کانتینر هدر را وسط چین می‌کند */
+    align-items: center;
+    width: 100%;
+}
+
+.logo-wrapper { /* Wrapper جدید برای کنترل چینش Breathwork Healer و لوگو */
+    display: flex;
+    align-items: center; /* تراز عمودی متن و لوگو */
+}
+
+.header-brand {
+    font-family: var(--font-heading);
+    font-size: 2.8em; /* اندازه متن "Breathwork Healer" */
+    font-weight: 700;
+    color: var(--primary-color);
+    white-space: nowrap; /* از شکسته شدن جمله جلوگیری می‌کند */
+    display: flex; /* برای اینکه لوگو و متن کنار هم قرار بگیرند */
+    align-items: center; /* تراز عمودی لوگو با متن */
+    gap: 12px; /* کمی افزایش فاصله بین متن و لوگو */
+    transition: color 0.3s ease; /* برای انیمیشن هاور روی کل لینک */
+}
+
+.header-brand:hover {
+    color: var(--secondary-color);
+}
+
+.header-logo-inline { /* استایل برای لوگوی تصویری کنار متن در هدر */
+    height: 50px; /* ارتفاع مناسب برای لوگوی کنار متن - **افزایش داده شد** */
+    width: auto;
+    display: inline-block; /* برای اینکه در کنار متن باشد */
+    vertical-align: middle; /* برای تراز بهتر با متن */
+}
+
+/* Hero Section */
+.hero-section {
+    background-color: var(--light-bg-color);
+    min-height: calc(100vh - var(--header-height));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    color: white;
+    text-align: center;
+}
+
+.hero-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.5) grayscale(0.1);
+    transform: scale(1.05);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    padding: 20px;
+}
+
+.hero-section h1 {
+    font-size: 4.5em;
+    margin-bottom: 25px;
+    color: white;
+    line-height: 1.1;
+    text-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+}
+
+.hero-section p {
+    font-size: 1.5em;
+    margin-bottom: 40px;
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    font-weight: 300;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 14px 30px;
+    border-radius: 30px;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-family: var(--font-body);
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.btn:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    margin-top: 40px;
+    box-shadow: none;
+}
+
+.btn-secondary:hover {
+    background-color: var(--primary-color);
+    color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn-small {
+    padding: 10px 20px;
+    font-size: 0.9em;
+    border-radius: 20px;
+}
+
+/* About Section */
+.about-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 60px;
+    align-items: center;
+    justify-content: center;
+}
+
+.about-text {
+    flex: 1;
+    min-width: 350px;
+    font-size: 1.15em;
+    color: var(--light-text-color);
+    line-height: 1.8;
+}
+
+.about-text p:not(:last-child) {
+    margin-bottom: 25px;
+}
+
+.about-image {
+    flex: 1;
+    min-width: 400px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.about-image img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Services Section */
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    margin-bottom: 60px;
+    text-align: center;
+}
+
+.service-item {
+    background-color: var(--light-bg-color);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-item:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.service-item .icon {
+    font-size: 3.5em;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    display: block;
+}
+
+.service-item h3 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    font-family: var(--font-heading);
+    color: var(--primary-color);
+}
+
+.service-item p {
+    color: var(--light-text-color);
+    font-size: 1.05em;
+}
+
+/* Skills Section */
+.skills-section {
+    background-color: var(--light-bg-color);
+}
+
+.skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.skills-list li {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    padding: 12px 25px;
+    border-radius: 30px;
+    font-weight: 400;
+    font-size: 1.1em;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.skills-list li:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Gallery Section */
+.gallery-section {
+    background-color: var(--background-color);
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+}
+
+.gallery-item {
+    background-color: var(--light-bg-color);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+.video-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.video-item .play-icon {
+    position: absolute;
+    font-size: 3em;
+    color: var(--white-color); /* Corrected: Using defined white color variable */
+    background-color: var(--dark-green-transparent); /* Corrected: Using defined transparent dark green variable */
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Added color to transition */
+}
+
+.gallery-item:hover .play-icon {
+    background-color: var(--dark-green-transparent-hover); /* Corrected: Using defined transparent dark green hover variable */
+    color: var(--white-color); /* Ensure it stays white on hover */
+}
+
+/* Events Section */
+.events-section {
+    background-color: var(--light-bg-color);
+}
+
+.event-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.event-item {
+    background-color: var(--background-color);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.event-item:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    transform: translateY(-5px);
+}
+
+.event-item h3 {
+    margin-bottom: 5px;
+    font-size: 1.6em;
+    flex: 1;
+    font-family: var(--font-heading);
+    color: var(--primary-color);
+}
+
+.event-item p {
+    color: var(--light-text-color);
+    font-size: 1.1em;
+    flex-basis: 100%;
+}
+
+/* Modal for Video */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.8);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    position: relative;
+    padding: 20px;
+    background-color: var(--background-color); /* Changed to a defined variable */
+    border-radius: 8px; /* Using a fixed value, as --border-radius-default was not defined */
+    max-width: 90%;
+    max-height: 90%;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.modal-content iframe {
+    width: 80vw;
+    height: 45vw;
+    max-width: 800px;
+    max-height: 450px;
+    display: block;
+}
+
+.close-button {
+    color: var(--modal-close-color); /* Corrected: Using new variable */
+    position: absolute;
+    top: 10px;
+    right: 25px; /* Changed for RTL */
+    font-size: 35px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: var(--modal-close-hover-color); /* Corrected: Using new variable */
+    text-decoration: none;
+}
+
+/* Contact Section */
+.contact-section {
+    background-color: var(--background-color);
+    text-align: center;
+}
+
+.contact-social-links {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.contact-social-links a {
+    display: inline-block;
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.contact-social-links a:hover {
+    transform: translateY(-8px) scale(1.1);
+    filter: brightness(1.2);
+}
+
+.contact-social-links img {
+    width: 50px;
+    height: 50px;
+}
+
+/* Footer */
+.footer {
+    background-color: #2e3d30;
+    color: white;
+    padding: 50px 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer p {
+    font-size: 1em;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Animation Styles (Fade-in on scroll) */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in.appear {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; }
+.delay-4 { transition-delay: 0.4s; }
+.delay-5 { transition-delay: 0.5s; }
+.delay-6 { transition-delay: 0.6s; }
+.delay-7 { transition-delay: 0.7s; }
+
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .header {
+        height: var(--header-height);
+    }
+    .header-brand {
+        font-size: 2.2em; /* کوچکتر کردن متن برند برای تبلت */
+        gap: 10px; /* کاهش فاصله */
+    }
+    .header-logo-inline {
+        height: 45px; /* بزرگتر کردن لوگو برای تبلت - **افزایش داده شد** */
+    }
+    
+    .hero-section h1 {
+        font-size: 3.5em;
+    }
+    .hero-section p {
+        font-size: 1.3em;
+    }
+
+    .about-content {
+        flex-direction: column;
+        gap: 40px;
+    }
+    .about-text, .about-image {
+        min-width: unset;
+        width: 100%;
+    }
+    .about-image img {
+        height: 400px;
+    }
+    h2 {
+        font-size: 2.5em;
+    }
+    p.section-description {
+        font-size: 1em;
+    }
+    .service-grid, .gallery-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+    }
+    .gallery-item img {
+        height: 250px;
+    }
+}
+
+@media (max-width: 600px) {
+    .header {
+        height: 80px;
+    }
+    .header-brand {
+        font-size: 1.8em; /* کوچکتر کردن متن برند برای موبایل */
+        gap: 8px; /* کاهش بیشتر فاصله */
+    }
+    .header-logo-inline {
+        height: 40px; /* بزرگتر کردن لوگو برای موبایل - **افزایش داده شد** */
+    }
+    h1 {
+        font-size: 3em;
+    }
+    h2 {
+        font-size: 2em;
+    }
+    .hero-section p {
+        font-size: 1.1em;
+    }
+    .about-image img {
+        height: 300px;
+    }
+    .service-item, .event-item {
+        padding: 25px;
+    }
+    .gallery-item img {
+        height: 200px;
+    }
+    .footer {
+        padding: 30px 0;
+    }
+    .contact-social-links {
+        gap: 20px;
+    }
+    .contact-social-links img {
+        width: 40px;
+        height: 40px;
+    }
+}
